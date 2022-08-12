@@ -84,20 +84,20 @@ catagoryContainer["4a4a4aff"] = {blk_metal1, blk_metal2, blk_metal3, blk_scrapme
                                  blk_tryponet, blk_metalnet, blk_spaceshipmetal, blk_lights
                                 }
 --wood blocks green
-catagoryContainer["0E8031ff"] = {blk_cardboard, blk_wood1, blk_wood2, blk_wood3, blk_scrapwood, blk_caution}
+catagoryContainer["0e8031ff"] = {blk_cardboard, blk_wood1, blk_wood2, blk_wood3, blk_scrapwood, blk_caution}
 --stone blocks yellow
-catagoryContainer["817C00ff"] = {blk_sand, blk_concrete1, blk_concrete2, blk_concrete3, blk_scrapstone,
+catagoryContainer["817c00ff"] = {blk_sand, blk_concrete1, blk_concrete2, blk_concrete3, blk_scrapstone,
                         blk_bricks, blk_glass, blk_armoredglass, blk_glasstile, blk_tiles
                     }
 --other blocks lime
-catagoryContainer["577D07ff"] = {blk_carpet, blk_plastic, blk_bubblewrap}
+catagoryContainer["577d07ff"] = {blk_carpet, blk_plastic, blk_bubblewrap}
 --pipes blue
 catagoryContainer["4c6fe3ff"] = {small_2way_pipe, small_2wayb_pipe, small_3way_pipe, small_3wayb_pipe, small_4way_pipe, small_4wayb_pipe,
                         small_5way_pipe, small_6way_pipe, small_long_pipe, obj_fittings_pipe, obj_fittings_pipebend, 
                         obj_fittings_pipesplit, obj_fittings_pipelong, obj_fittings_pipevalve
                     }
 --vehicle parts red
-catagoryContainer["7C0000ff"] = {obj_interactive_driversaddle_01, obj_interactive_driversaddle_02, obj_interactive_driversaddle_03, obj_interactive_driversaddle_04, obj_interactive_driversaddle_05,
+catagoryContainer["7c0000ff"] = {obj_interactive_driversaddle_01, obj_interactive_driversaddle_02, obj_interactive_driversaddle_03, obj_interactive_driversaddle_04, obj_interactive_driversaddle_05,
                         obj_interactive_driverseat_01, obj_interactive_driverseat_02, obj_interactive_driverseat_03, obj_interactive_driverseat_04, obj_interactive_driverseat_05,
                         obj_interactive_seat_01, obj_interactive_seat_02, obj_interactive_seat_03, obj_interactive_seat_04, obj_interactive_seat_05,
                         obj_interactive_saddle_01, obj_interactive_saddle_02, obj_interactive_saddle_03, obj_interactive_saddle_04, obj_interactive_saddle_05,
@@ -110,7 +110,7 @@ catagoryContainer["7C0000ff"] = {obj_interactive_driversaddle_01, obj_interactiv
                         obj_interactive_mountablespudgun, jnt_bearing, obj_vehicle_smallwheel, obj_vehicle_bigwheel
                     }
 --logic parts orange
-catagoryContainer["673B00ff"] = {obj_interactive_controller_01, obj_interactive_controller_02, obj_interactive_controller_03, obj_interactive_controller_04, obj_interactive_controller_05, 
+catagoryContainer["673b00ff"] = {obj_interactive_controller_01, obj_interactive_controller_02, obj_interactive_controller_03, obj_interactive_controller_04, obj_interactive_controller_05, 
                         jnt_interactive_piston_01, jnt_interactive_piston_02, jnt_interactive_piston_03, jnt_interactive_piston_04, jnt_interactive_piston_05,
                         obj_interactive_sensor_01,  obj_interactive_sensor_02, obj_interactive_sensor_03, obj_interactive_sensor_04, obj_interactive_sensor_05,
                         obj_interactive_switch, obj_interactive_button, obj_interactive_logicgate, obj_interactive_timer
@@ -121,15 +121,16 @@ local function evaluateChestPriority(container, itemUid)
 	--if container is the unique container type for item
 	if container.shape.uuid == ItemSpecialContainer[tostring(itemUid)] then
 		return 4
-	else
-		local color = tostring(container.shape.color)
-		--if container is single item type and item matches
-        if isAnyOf(color,oneItemContainer) and sm.container.getFirstItem(container.shape:getInteractable():getContainer())["uuid"] == itemUid then
-            return 3
-		--if container is limited by catagory and item matches
-        elseif catagoryContainer[color] and isAnyOf(itemUid,catagoryContainer[color]) then
-            return 2
-        end
+	end
+	local color = tostring(container.shape.color)
+	--if container is single item type and item matches
+    if isAnyOf(color,oneItemContainer) and sm.container.getFirstItem(container.shape:getInteractable():getContainer())["uuid"] == itemUid then
+        return 3
+	end
+	--if container is limited by catagory and item matches
+	print(color, catagoryContainer[color])
+	if catagoryContainer[color] and isAnyOf(itemUid,catagoryContainer[color]) then
+    	return 2
     end
 	--container has no limits on item type
     return 1
