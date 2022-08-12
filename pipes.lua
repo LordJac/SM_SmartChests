@@ -128,7 +128,6 @@ local function evaluateChestPriority(container, itemUid)
         return 3
 	end
 	--if container is limited by catagory and item matches
-	print(color, catagoryContainer[color])
 	if catagoryContainer[color] and isAnyOf(itemUid,catagoryContainer[color]) then
     	return 2
     end
