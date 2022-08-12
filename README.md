@@ -5,7 +5,7 @@ replace *\Scrap Mechanic\Survival\Scripts\game\util\pipes.lua with pipes.lua
 
 Works by adding to FindContainerToCollectTo function to evaluate the priority of all connected chests and returning highest priority rather than returning first valid.
 
-Specialized containers have highest priority
+Specialized containers (gas container etc.) have highest priority
 
 Chests coloured in the lightest or darkest colours are single item containers, only accepts whatever item is in it's first inventory position, second highest priority
 
