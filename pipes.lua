@@ -107,7 +107,7 @@ catagoryContainer["7C0000ff"] = {obj_interactive_driversaddle_01, obj_interactiv
                         jnt_suspensionoffroad_01, jnt_suspensionoffroad_02, jnt_suspensionoffroad_03, jnt_suspensionoffroad_04, jnt_suspensionoffroad_05, 
                         jnt_suspensionsport_01, jnt_suspensionsport_02, jnt_suspensionsport_03, jnt_suspensionsport_04, jnt_suspensionsport_05, 
                         jnt_interactive_piston_01, jnt_interactive_piston_02, jnt_interactive_piston_03, jnt_interactive_piston_04, jnt_interactive_piston_05, 
-                        obj_interactive_mountablespudgun, jnt_bearing, 
+                        obj_interactive_mountablespudgun, jnt_bearing, obj_vehicle_smallwheel, obj_vehicle_bigwheel
                     }
 --logic parts orange
 catagoryContainer["673B00ff"] = {obj_interactive_controller_01, obj_interactive_controller_02, obj_interactive_controller_03, obj_interactive_controller_04, obj_interactive_controller_05, 
@@ -148,8 +148,7 @@ function FindContainerToCollectTo( containers, itemUid, amount )
             end
 		end
 	end
-	--return best valid container
-    return chest
+	return chest
 end
 
 function FindContainerToSpendFrom( containers, itemUid, amount )
